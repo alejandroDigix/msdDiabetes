@@ -1,1859 +1,1543 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Estás a tiempo</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;700&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
-    <link rel="shortcut icon" href="favicon.png" />
-    <script type="text/javascript">
-      var p1, p2, p3, p4, p5, p6;
+ <head>
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <title>Estás a tiempo</title>
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;700&display=swap" rel="stylesheet">
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+ <link rel="shortcut icon" href="https://image.mail.msd.com.ar/lib/fe9313737664007e7d/m/1/211013favicon.png">
+   <!-- Google Tag Manager --><script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-5ZB3NPL'); </script> <!-- End Google Tag Manager -->
+   
+ <script type="text/javascript">
+  
 
-      function MM_showHideLayers() {
-        //v9.0
-        var i,
-          p,
-          v,
-          obj,
-          args = MM_showHideLayers.arguments;
-        for (i = 0; i < args.length - 2; i += 3)
-          with (document)
-            if (getElementById && (obj = getElementById(args[i])) != null) {
-              v = args[i + 2];
-              if (obj.style) {
-                obj = obj.style;
-                v = v == "show" ? "block" : v == "hide" ? "none" : v;
-              }
-              obj.display = v;
-            }
-      }
-      function MM_changeProp(objId, x, theProp, theValue) {
-        //v9.0
-        var obj = null;
-        with (document) {
-          if (getElementById) obj = getElementById(objId);
-        }
-        if (obj) {
-          if (theValue == true || theValue == false)
-            eval("obj.style." + theProp + "=" + theValue);
-          else eval("obj.style." + theProp + "='" + theValue + "'");
-        }
-      }
+   
+  var p1, p2, p3, p4, p5, p6;
+   
+   
+function MM_showHideLayers() { //v9.0
+  var i,p,v,obj,args=MM_showHideLayers.arguments;
+   document.getElementsByTagName("table")[0].style.display = "none";
+  for (i=0; i<(args.length-2); i+=3) 
+  with (document) if (getElementById && ((obj=getElementById(args[i]))!=null)) { v=args[i+2];
+    if (obj.style) { obj=obj.style; v=(v=='show')?'block':(v=='hide')?'none':v; }
+    obj.display=v; }
+}
+function MM_changeProp(objId,x,theProp,theValue) { //v9.0
+  var obj = null; with (document){ if (getElementById)
+  obj = getElementById(objId); }
+  if (obj){
+    if (theValue == true || theValue == false)
+      eval("obj.style."+theProp+"="+theValue);
+    else eval("obj.style."+theProp+"='"+theValue+"'");
+  }
+  }
+  
+function calcula_imc(){
+ var altura = document.getElementById('selAltura').value;
+ var peso = document.getElementById('selPeso').value;
 
-      function calcula_imc() {
-        var altura = document.getElementById("selAltura").value;
-        var peso = document.getElementById("selPeso").value;
+ var quadrado = (altura * altura);
 
-        var quadrado = altura * altura;
+ var calculo = (peso/quadrado);
 
-        var calculo = peso / quadrado;
+ calculo = parseFloat(calculo).toFixed(2);
 
-        calculo = parseFloat(calculo).toFixed(2);
+ 
+ if(calculo>=25 && calculo<29) {p6=1}
 
-        if (calculo >= 25 && calculo < 29) {
-          p6 = 1;
-        } else if (calculo >= 30 && calculo < 39) {
-          p6 = 2;
-        } else if (calculo > 40) {
-          p6 = 3;
-        } else {
-          p6 = 0;
-        }
 
-        return p6;
-      }
+ else if(calculo>=30 && calculo<39) {p6=2}
 
-      function resultado() {
-        calcula_imc();
+ else if(calculo>40) {p6=3}  
+ else {p6=0} 
+ 
 
-        var nota;
+ return p6;
+}
+  
+  
 
-        // <!-- 1ª pregunta -->
-        if (document.getElementById("antecedentesSi").checked == true) {
-          p1 = 1;
-        } else {
-          p1 = 0;
-        }
-        // <!-- 2ª pregunta -->
-        if (document.getElementById("diagnosticoSi").checked == true) {
-          p2 = 1;
-        } else {
-          p2 = 0;
-        }
+  
+function resultado() {
+ 
+ calcula_imc();
+ 
+ var nota;
 
-        // <!-- 3ª pregunta -->
-        p3 = 0;
-        if (document.getElementById("edad40-49").checked == true) {
-          p3 = 1;
-        }
-        if (document.getElementById("edad50-59").checked == true) {
-          p3 = 2;
-        }
-        if (document.getElementById("edad60").checked == true) {
-          p3 = 3;
-        }
+ <!-- 1ª pregunta -->
+ if (document.getElementById('antecedentesSi').checked==true) {p1=1; document.getElementsByName("antecedentes")[0].value = 1;}
+ else {p1=0; document.getElementsByName("antecedentes")[0].value = 0;}
+  
+  <!-- 2ª pregunta -->
+ if (document.getElementById('diagnosticoSi').checked==true) {p2=1; document.getElementsByName("presiónArterialAlta")[0].value = 1;}
+ else {p2=0; document.getElementsByName("presiónArterialAlta")[0].value = 0;}
 
-        // <!-- 4ª pregunta -->
-        if (document.getElementById("actividadNo").checked == true) {
-          p4 = 1;
-        } else {
-          p4 = 0;
-        }
-        // <!-- 5ª pregunta -->
-        if (document.getElementById("hombre").checked == true) {
-          p5 = 1;
-        } else {
-          p5 = 0;
-        }
+ <!-- 3ª pregunta -->
+ p3=0; document.getElementsByName("edad1")[0].value = "-40";
+ if (document.getElementById('edad40-49').checked==true) {p3=1; document.getElementsByName("edad1")[0].value = "40-49";}
+ if (document.getElementById('edad50-59').checked==true) {p3=2; document.getElementsByName("edad1")[0].value = "50-59";}
+ if (document.getElementById('edad60').checked==true) {p3=3; document.getElementsByName("edad1")[0].value = "60-";}
+ 
+ <!-- 4ª pregunta -->
+ if (document.getElementById('actividadNo').checked==true) {p4=1; document.getElementsByName("actividadFísica")[0].value = 1;}
+ else {p4=0 ; document.getElementsByName("actividadFísica")[0].value = 0;}
+ 
+  <!-- 5ª pregunta -->
+ if (document.getElementById('hombre').checked==true) {p5=1; document.getElementsByName("genero")[0].value = 1;}
+ else {p5=0; document.getElementsByName("genero")[0].value = 0;}
 
-        nota = p1 + p2 + p3 + p4 + p5 + p6;
+  document.getElementsByName("altura1")[0].value = document.getElementById('selAltura').value;
+  document.getElementsByName("peso1")[0].value = document.getElementById('selPeso').value;
+  
+  
 
-        var totalnota = document.getElementById("totalnota");
-        totalnota.innerHTML = nota;
+ nota=p1+p2+p3+p4+p5+p6;
 
-        // detalle de la palabra media
-        var totalriesgo = document.getElementById("totalriesgo");
-		var totalriesgo2 = document.getElementById("totalriesgo2");
-        var bajoMedioAlto;
+ var totalnota = document.getElementById('totalnota');
+   totalnota.innerHTML = nota; 
+ document.getElementsByName("total1")[0].value = p1+p2+p3+p4+p5+p6;
+ document.getElementsByTagName("button")[0].click();
+}
+ 
+ 
 
-        if (nota <= 3) {
-          bajoMedioAlto = "bajo";
-        } else if (nota <= 7) {
-          bajoMedioAlto = "medio";
-        } else {
-          bajoMedioAlto = "alto";
-        }
-        totalriesgo.innerHTML = bajoMedioAlto;
-		totalriesgo2.innerHTML = bajoMedioAlto;
-      }
-	  
-	  
-    </script>
-	
-	
-	
-    <style>
-      .text-left {
-        text-align: left;
-      }
-      .text-right {
-        text-align: right;
-      }
-      .text-center {
-        text-align: center;
-      }
-      .text-justify {
-        text-align: justify;
-      }
-      /* DISPLAY CLASSES */ /* ALIGN CLASSES */
-      /************************/
-      .block {
-        display: block !important;
-        width: 100%;
-      }
-      .flex {
-        display: flex !important;
-        justify-content: space-around !important;
-      }
-      .text-left {
-        text-align: left !important;
-      }
-      .flex {
-        display: flex !important;
-      }
-      sup {
-        font-size: 60%;
-      }
-      /* COLS */
-      /************************/
 
-      .col {
-        -webkit-column-count: 2;
-        -moz-column-count: 2;
-        column-count: 2;
-        font-size: 14px;
-        line-height: 1.2;
-        -webkit-column-gap: 55px;
-        -moz-column-gap: 55px;
-        column-gap: 55px;
-        -webkit-column-width: 300px;
-        -moz-column-width: 300px;
-        column-width: 300px;
-      }
+   
+ 
+ 
+</script>
+ <style>
+.text-left {
+    text-align: left
+}
+.text-right {
+    text-align: right
+}
+.text-center {
+    text-align: center
+}
+.text-justify {
+    text-align: justify
+}
+/* DISPLAY CLASSES */ /* ALIGN CLASSES */
+/************************/
+.block {
+    display: block !important;
+    width: 100%;
+}
+.flex {
+    display: flex !important;
+    justify-content: space-around !important;
+}
+.text-left {
+    text-align: left !important
+}
+.flex {
+    display: flex !important;
+}
+sup {
+    font-size: 60%
+}
+/* COLS */
+/************************/
 
-      .row {
-        display: flex;
-        width: 100%;
-      }
-      /*FUENTES */
-      @font-face {
-        font-family: "Invention Reg";
-        src: url("fonts/Invention_W_Rg.eot");
-        src: url("fonts/Invention_W_Rg.woff") format("woff"),
-          url("fonts/Invention_W_Rg.otf") format("opentype"),
-          url("fonts/Invention_W_Rg.svg#filename") format("svg");
-      }
-      @font-face {
-        font-family: "Invention Bd";
-        src: url("fonts/Invention_W_Bd.eot");
-        src: url("fonts/Invention_W_Bd.woff") format("woff"),
-          url("fonts/Invention_W_Bd.otf") format("opentype"),
-          url("fonts/Invention_W_Bd.svg#filename") format("svg");
-      }
-      @font-face {
-        font-family: "Invention Lt";
-        src: url("fonts/Invention_W_Lt.eot");
-        src: url("fonts/Invention_W_Lt.woff") format("woff"),
-          url("fonts/Invention_W_Lt.otf") format("opentype"),
-          url("fonts/Invention_W_Lt.svg#filename") format("svg");
-      }
-      * {
-        margin: 0;
-        padding: 0;
-        font-family: "Raleway", sans-serif;
-      }
-      .mbl {
-        display: block;
-      }
-      .dsktp {
-        display: none;
-      }
-      /* COLORS CLASSES */
-      /************************/
-      .black {
-        color: #454545;
-      }
-      .green {
-        color: #04897f;
-      }
-      .blue {
-        color: #554de4;
-      }
-      .bggreen {
-        background-color: #40c3a8;
-      }
-      .bgblue {
-        background-color: #554de4;
-      }
-      /* ALINEACIONES */
-      .text-left {
-        text-align: left;
-      }
-      .text-right {
-        text-align: right;
-      }
-      .text-center {
-        text-align: center;
-      }
-      .text-justify {
-        text-align: justify;
-      }
-      /* DISPLAY CLASSES */ /* ALIGN CLASSES */
-      /************************/
-      .block {
-        display: block !important;
-        width: 100%;
-      }
-      .flex {
-        display: flex !important;
-        justify-content: space-around !important;
-      }
-      .text-left {
-        text-align: left !important;
-      }
-      .noflex {
-        display: block !important;
-        padding-top: 0 !important;
-      }
-      .flex {
-        display: flex !important;
-      }
-      .medio {
-        align-items: center;
-        justify-content: center;
-        display: flex;
-        align-items: center;
-        align-content: unset;
-        place-items: baseline;
-        display: flex;
-        flex-direction: column;
-      }
-      .content-center {
-        margin: 0 auto !important;
-      }
-      /* MARGIN & PADDING CLASSES */
-      /************************/
-      .mb-0 {
-        margin-bottom: 0px !important;
-      }
-      .mb-10 {
-        margin-bottom: 10px !important;
-      }
-      .mb-15 {
-        margin-bottom: 15px !important;
-      }
-      .mb-20 {
-        margin-bottom: 20px !important;
-      }
-      .mb-30 {
-        margin-bottom: 30px !important;
-      }
-      .mb-40 {
-        margin-bottom: 40px !important;
-      }
-      .mb-60 {
-        margin-bottom: 60px !important;
-      }
-      .mb-90 {
-        margin-bottom: 90px !important;
-      }
-      .mb-70 {
-        margin-bottom: 70px !important;
-      }
-      .mt-0 {
-        margin-top: 0px !important;
-      }
-      .mt-10 {
-        margin-top: 10px !important;
-      }
-      .mt-50 {
-        margin-top: 50px !important;
-      }
-      .mt-100 {
-        margin-top: 100px !important;
-      }
-      .mt-90 {
-        margin-top: 90px !important;
-      }
-      .mt-80 {
-        margin-top: 80px !important;
-      }
-      .mt-70 {
-        margin-top: 70px !important;
-      }
-      .mt-60 {
-        margin-top: 60px !important;
-      }
-      .mt-50 {
-        margin-top: 50px !important;
-      }
-      .mt-40 {
-        margin-top: 40px !important;
-      }
-      .mt-30 {
-        margin-top: 30px !important;
-      }
-      .mt-20 {
-        margin-top: 20px !important;
-      }
-      .mt-15 {
-        margin-top: 15px !important;
-      }
-      .mt-10 {
-        margin-top: 10px !important;
-      }
-      .pt-0 {
-        padding-top: 0px !important;
-      }
-      .pt-20 {
-        padding-top: 20px !important;
-      }
-      .pt-30 {
-        padding-top: 30px !important;
-      }
-      .pt-40 {
-        padding-top: 40px !important;
-      }
-      .pt-60 {
-        padding-top: 60px !important;
-      }
-      .pt-80 {
-        padding-top: 80px !important;
-      }
-      .pt-90 {
-        padding-top: 90px !important;
-      }
-      .pb-10 {
-        padding-bottom: 10px !important;
-      }
-      .pb-20 {
-        padding-bottom: 20px !important;
-      }
-      .pb-30 {
-        padding-bottom: 30px !important;
-      }
-      .pb-40 {
-        padding-bottom: 40px !important;
-      }
-      .pb-80 {
-        padding-bottom: 80px !important;
-      }
-      .pb-90 {
-        padding-bottom: 90px !important;
-      }
-      .mr-5 {
-        margin-right: 40px !important;
-      }
-      .ml-5 {
-        margin-left: 40px !important;
-      }
-      .pr-5 {
-        padding-right: 40px !important;
-      }
-      .pl-5 {
-        padding-left: 40px !important;
-      }
-      .p-20 {
-        padding: 20px;
-      }
-      .p-30 {
-        padding: 30px;
-      }
-      .p-40 {
-        padding: 40px;
-      }
-      .pl-20 {
-        padding-left: 20px;
-      }
-      .pr-20 {
-        padding-right: 20px;
-      }
-      .col-30 {
-        width: 100%;
-        display: inline-block;
-      }
-      .col-50 {
-        width: 100%;
-        display: inline-block;
-      }
-      .col-100 {
-        width: 100% !important;
-      }
-      sup {
-        font-size: 60%;
-      }
-      /* COLS */
-      /************************/
+.col {
+    -webkit-column-count : 2;
+    -moz-column-count : 2;
+    column-count: 2;
+    font-size: 14px;
+    line-height: 1.2;
+    -webkit-column-gap: 55px;
+    -moz-column-gap: 55px;
+    column-gap: 55px;
+    -webkit-column-width : 300px;
+    -moz-column-width : 300px;
+    column-width : 300px;
+}
+.break-col {
+    break-after: column;
+    -moz-break-after: column;
+    -webkit-break-after: column;
+}
+.row {
+    display: flex;
+    width: 100%
+}
+/*FUENTES */
+@font-face {
+    font-family: 'Invention Reg';
+    src: url("https://conecta.msd.com.co/static/section/fonts/Invention_W_Rg.eot");
+    src: url("https://conecta.msd.com.co/static/section/fonts/Invention_W_Rg.woff") format("woff"), url("https://conecta.msd.com.co/static/section/fonts/Invention_W_Rg.otf") format("opentype");
+}
+@font-face {
+    font-family: 'Invention Bd';
+    src: url("https://conecta.msd.com.co/static/section/fonts/Invention_W_Bd.eot");
+    src: url("https://conecta.msd.com.co/static/section/fonts/Invention_W_Bd.woff") format("woff"), url("https://conecta.msd.com.co/static/section/fonts/Invention_W_Bd.otf") format("opentype");
+}
+@font-face {
+    font-family: 'Invention Lt';
+    src: url("https://conecta.msd.com.co/static/section/fonts//Invention_W_Lt.eot");
+    src: url("https://conecta.msd.com.co/static/section/fonts/Invention_W_Lt.woff") format("woff"), url("https://conecta.msd.com.co/static/section/fonts/Invention_W_Lt.otf") format("opentype");
+}
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Raleway', sans-serif;
+}
+.mbl {
+    display: block
+}
+.dsktp {
+    display: none
+}
+/* COLORS CLASSES */
+/************************/
+.black {
+    color: #454545
+}
+.green {
+    color: #04897F
+}
+.blue {
+    color: #554DE4
+}
+.bggreen {
+    background-color: #40C3A8
+}
+.bgblue {
+    background-color: #554DE4
+}
+/* ALINEACIONES */
+.text-left {
+    text-align: left
+}
+.text-right {
+    text-align: right
+}
+.text-center {
+    text-align: center
+}
+.text-justify {
+    text-align: justify
+}
+/* DISPLAY CLASSES */ /* ALIGN CLASSES */
+/************************/
+.block {
+    display: block !important;
+    width: 100%;
+}
+.flex {
+    display: flex !important;
+    justify-content: space-around !important;
+}
+.text-left {
+    text-align: left !important
+}
+.noflex {
+    display: block !important;
+    padding-top: 0 !important
+}
+.flex {
+    display: flex !important;
+}
+.medio {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    align-content: unset;
+    place-items: baseline;
+    display: flex;
+    flex-direction: column;
+}
+.content-center {
+    margin: 0 auto !important;
+}
+/* MARGIN & PADDING CLASSES */
+/************************/
+.mb-0 {
+    margin-bottom: 0px !important
+}
+.mb-10 {
+    margin-bottom: 10px !important
+}
+.mb-15 {
+    margin-bottom: 15px !important
+}
+.mb-20 {
+    margin-bottom: 20px !important
+}
+.mb-30 {
+    margin-bottom: 30px !important
+}
+.mb-40 {
+    margin-bottom: 40px !important
+}
+.mb-60 {
+    margin-bottom: 60px !important;
+}
+.mb-90 {
+    margin-bottom: 90px !important;
+}
+.mb-70 {
+    margin-bottom: 70px !important;
+}
+.mt-0 {
+    margin-top: 0px !important
+}
+.mt-10 {
+    margin-top: 10px !important
+}
+.mt-50 {
+    margin-top: 50px !important
+}
+.mt-100 {
+    margin-top: 100px !important
+}
+.mt-90 {
+    margin-top: 90px !important
+}
+.mt-80 {
+    margin-top: 80px !important
+}
+.mt-70 {
+    margin-top: 70px !important
+}
+.mt-60 {
+    margin-top: 60px !important
+}
+.mt-50 {
+    margin-top: 50px !important
+}
+.mt-40 {
+    margin-top: 40px !important
+}
+.mt-30 {
+    margin-top: 30px !important
+}
+.mt-20 {
+    margin-top: 20px !important
+}
+.mt-15 {
+    margin-top: 15px !important
+}
+.mt-10 {
+    margin-top: 10px !important
+}
+.pt-0 {
+    padding-top: 0px !important;
+}
+.pt-20 {
+    padding-top: 20px !important;
+}
+.pt-30 {
+    padding-top: 30px !important;
+}
+.pt-40 {
+    padding-top: 40px !important;
+}
+.pt-60 {
+    padding-top: 60px !important;
+}
+.pt-80 {
+    padding-top: 80px !important;
+}
+.pt-90 {
+    padding-top: 90px !important;
+}
+.pb-10 {
+    padding-bottom: 10px !important
+}
+.pb-20 {
+    padding-bottom: 20px !important
+}
+.pb-30 {
+    padding-bottom: 30px !important
+}
+.pb-40 {
+    padding-bottom: 40px !important
+}
+.pb-80 {
+    padding-bottom: 80px !important
+}
+.pb-90 {
+    padding-bottom: 90px !important
+}
+.mr-5 {
+    margin-right: 40px !important
+}
+.ml-5 {
+    margin-left: 40px !important
+}
+.pr-5 {
+    padding-right: 40px !important
+}
+.pl-5 {
+    padding-left: 40px !important
+}
+.p-20 {
+    padding: 20px;
+}
+.p-30 {
+    padding: 30px;
+}
+.p-40 {
+    padding: 40px;
+}
+.pl-20 {
+    padding-left: 20px;
+}
+.pr-20 {
+    padding-right: 20px;
+}
+.col-30 {
+    width: 100%;
+    display: inline-block
+}
+.col-50 {
+    width: 100%;
+    display: inline-block
+}
+.col-100 {
+    width: 100%!important;
+}
+sup {
+    font-size: 60%
+}
+/* COLS */
+/************************/
 
-      .col {
-        -webkit-column-count: 2;
-        -moz-column-count: 2;
-        column-count: 2;
-        font-size: 14px;
-        line-height: 1.2;
-        -webkit-column-gap: 55px;
-        -moz-column-gap: 55px;
-        column-gap: 55px;
-        -webkit-column-width: 300px;
-        -moz-column-width: 300px;
-        column-width: 300px;
-      }
+.col {
+    -webkit-column-count : 2;
+    -moz-column-count : 2;
+    column-count: 2;
+    font-size: 14px;
+    line-height: 1.2;
+    -webkit-column-gap: 55px;
+    -moz-column-gap: 55px;
+    column-gap: 55px;
+    -webkit-column-width : 300px;
+    -moz-column-width : 300px;
+    column-width : 300px;
+}
+.break-col {
+    break-after: column;
+    -moz-break-after: column;
+    -webkit-break-after: column;
+}
+.row {
+    display: block;
+    width: 100%
+}
+.container {
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    position: relative
+}
+/* titulos*/
 
-      .row {
-        display: block;
-        width: 100%;
-      }
-      .container {
-        max-width: 1200px;
-        margin: auto;
-        display: flex;
-        position: relative;
-      }
-      /* titulos*/
+header h5 {
+    color: #fff;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 28px;
+    /* identical to box height, or 227% */
+    font-family: 'Invention Lt', sans-serif;
+    color: #FFFFFF;
+    text-align: left
+}
+h5 {
+    font-family: 'Invention Reg', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 22px;
+    line-height: 50px;
+    /* identical to box height, or 227% */
 
-      header h5 {
-        color: #fff;
-        font-style: normal;
-        font-weight: normal;
-        font-size: 20px;
-        line-height: 28px;
-        /* identical to box height, or 227% */
-        font-family: "Invention Lt", sans-serif;
-        color: #ffffff;
-        text-align: left;
-      }
-      h5 {
-        font-family: "Invention Reg", sans-serif;
-        font-style: normal;
-        font-weight: normal;
-        font-size: 22px;
-        line-height: 50px;
-        /* identical to box height, or 227% */
+    color: #FFFFFF;
+}
+h3 {
+    font-family: 'Invention Bd', sans-serif;
+    font-style: normal;
+    font-size: 22px;
+    line-height: 24px;
+    /* identical to box height, or 227% */
 
-        color: #ffffff;
-      }
-      h3 {
-        font-family: "Invention Bd", sans-serif;
-        font-style: normal;
-        font-size: 22px;
-        line-height: 24px;
-        /* identical to box height, or 227% */
+    color: #04897F;
+}
+.itempreg .col-50.text-center img {
+    margin-bottom: 27px;
+}
+h1 {
+    font-family: 'Invention Reg', sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 35px;
+    line-height: 40px;
+    /* or 114% */
 
-        color: #04897f;
-      }
-      .itempreg .col-50.text-center img {
-        margin-bottom: 27px;
-      }
-      h1 {
-        font-family: "Invention Reg", sans-serif;
-        font-style: normal;
-        font-weight: bold;
-        font-size: 35px;
-        line-height: 40px;
-        /* or 114% */
 
-        color: #f4f4f4;
-      }
-      h2 {
-        font-family: "Invention Bd", sans-serif;
-        font-style: normal;
-        font-weight: bold;
-        font-size: 35px;
-        line-height: 40px;
-        /* or 114% */
+    color: #F4F4F4;
+}
+h2 {
+    font-family: 'Invention Bd', sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 35px;
+    line-height: 40px;
+    /* or 114% */
 
-        text-align: center;
-        color: #04897f;
-      }
-      h5 {
-        font-family: "Invention Bd", sans-serif;
-        font-style: normal;
-        font-weight: bold;
-        font-size: 17px;
-        line-height: 25px;
-        /* or 208% */
+    text-align: center;
+    color: #04897F;
+}
+h5 {
+    font-family: 'Invention Bd', sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 17px;
+    line-height: 25px;
+    /* or 208% */
 
-        text-align: center;
-        color: #04897f;
-      }
-      header p {
-        font-family: "Invention Reg", sans-serif;
-        font-weight: 400;
-        font-size: 18px;
-        line-height: 22px;
-        /* or 122% */
+    text-align: center;
+    color: #04897F;
+}
+header p {
+    font-family: 'Invention Reg', sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    /* or 122% */
 
-        color: #ffffff;
-      }
-      a.btn.bgblue {
-        font-style: normal;
-        font-weight: 500;
-        font-size: 16px;
-        line-height: 20px;
-        font-family: "Invention Bd", sans-serif;
-        text-align: center;
-        letter-spacing: 2px;
-        padding: 20px 60px;
-        color: #fff;
-        text-decoration: none;
-        text-transform: uppercase;
-        margin: 30px auto;
-        display: block;
-        max-width: 500px;
-        width: auto;
-        margin: auto;
-        border: 1px solid #554de4;
-      }
-      a.btn.bgblue:hover {
-        color: #554de4;
-        background: #fff;
-        border: 1px solid #554de4;
-      }
-      header .container {
-        width: 100%;
-        max-width: none;
-        padding: 90px 0 150px 0 !important;
-      }
-      header .container .row {
-        margin: auto;
-        max-width: 1200px;
-        width: 90%;
-      }
-      header .container .row img {
-        width: 100%;
-        margin: auto;
-        height: auto;
-        max-width: 469px;
-      }
-      .container.destacados {
-        margin-top: -88px;
-      }
-      .destacados .row {
-        text-align: center;
-      }
-      .destacados .col-30 {
-        background: #ffffff;
-        box-shadow: 0px 4px 33px rgba(0, 134, 124, 0.2);
-        border-radius: 58px;
-        text-align: center;
-        font-family: "Raleway", sans-serif;
-        padding: 0 20px;
-        font-style: normal;
-        font-weight: 500;
-        font-size: 15px;
-        line-height: 18px;
-        align-items: center;
-        text-align: center;
-        color: #454545;
-        margin: 20px auto;
-        width: 75%;
-        min-height: 262px;
-        display: inline-flex;
-        flex-direction: column;
-        align-items: stretch;
-        overflow: hidden;
-      }
-      .destacados .col-30 img {
-        max-width: 327px;
-        height: auto;
-        margin: auto;
-        width: 100%;
-      }
-      .bgcirculo {
-        background-image: url(img/circle.png);
-        background-repeat: no-repeat;
-        background-position: center top;
-        padding-top: 33px;
-      }
-      .destacados h3 {
-        font-weight: 700;
-        margin: 20px 0;
-      }
-      .destacados p {
-        margin: 20px auto 40px auto;
-      }
-      .container.previniendo,
-      .container.riesgo,
-      .container.cuidados,
-      .container.prevenir,
-      .container.recomendaciones,
-      .container.referencias {
-        width: 90%;
-        margin: auto;
-      }
-      .container .factores {
-        width: 90%;
-        margin: auto;
-      }
-      .container.referencias {
-        font-style: normal;
-        font-weight: 500;
-        font-size: 12px;
-        line-height: 14px;
-        display: flex;
-        align-items: center;
-        color: #454545;
-      }
-      .previniendo.container .row img {
-        width: 100%;
-        margin: auto;
-        height: auto;
-        max-width: 469px;
-      }
-      .prevenir .col-50 {
-        background: #ffffff;
-        box-shadow: 0px 4px 33px rgba(0, 134, 124, 0.2);
-        border-radius: 58px;
-        overflow: hidden;
-        padding: 40px 20px;
-        width: 87%;
-        margin: 20px auto;
-      }
-      .prevenir h2 {
-        margin: 30px 0;
-      }
-      .referencias a:link,
-      .referencias a:visited {
-        color: #454545;
-        text-decoration: none;
-      }
-      .prevenir .col-50 img {
-        width: 100%;
-        height: auto;
-        max-width: 327px;
-      }
-      .prevenir .col-50 p {
-        margin: 30px 0;
-      }
-      .previniendo ul {
-        list-style-image: url(img/bullet.png);
-        margin: 0;
-        padding: 0;
-        width: 67%;
-        margin: 50px auto;
-      }
-      .previniendo ul li {
-        margin: 20px 0;
-        font-family: "Raleway", sans-serif;
-        font-style: normal;
-        font-weight: 500;
-        font-size: 17px;
-        line-height: 20px;
-        color: #454545;
-        list-style-image: url(img/bullet.png);
-      }
-      .cuidados ul li {
-        margin: 20px 0;
-        font-family: "Raleway", sans-serif;
-        font-style: normal;
-        font-weight: 500;
-        font-size: 17px;
-        line-height: 20px;
-        list-style: none;
-        color: #454545;
-        text-align: center;
-      }
-      .cuidados ul li img {
-        display: block;
-        clear: both;
-        margin: 30px auto;
-      }
-      .factores {
-        background-image: url("img/bg-nivel-de-riesto-mbl.jpg");
-        background-repeat: no-repeat;
-        background-position: right top;
-        padding: 90px 0;
-        width: 90%;
-        margin: auto;
-        background-size: 45%;
-      }
-      .factores ul {
-        margin: 20px 0;
-        width: 60%;
-        margin: auto;
-      }
-      .factores ul li {
-        margin: 20px 0;
-        font-family: "Raleway", sans-serif;
-        font-style: normal;
-        font-weight: 500;
-        font-size: 17px;
-        line-height: 20px;
-        color: #454545;
-        list-style-image: url(img/bullet.png);
-      }
-      .factores ul li::marker {
-        padding-top: -5px;
-      }
-      footer {
-        background: #04897f;
-        color: #fff;
-        font-style: normal;
-        font-weight: 500;
-        font-size: 12px;
-        line-height: 14px;
-        align-items: center;
-        padding: 40px 20px;
-        text-align: center;
-        margin-top: 60px;
-      }
-      footer a:link,
-      footer a:visited {
-        color: #fff;
-      }
-      footer img {
-        margin-top: 50px;
-      }
-      footer ul {
-        margin: 20px 0;
-        padding: 0;
-        list-style: none;
-      }
-      footer ul li {
-        margin: 10px 0;
-        padding: 0 20px;
-        list-style: none;
-        border-right: 1px solid #fff;
-        width: auto;
-        display: inline-block;
-      }
-      header .preguntas {
-        background-image: url(img/bg-header-preguntas.png);
-        background-position: center center;
-        background-size: cover;
-        text-align: center !important;
-        background-repeat: no-repeat;
-        padding: 40px 0 !important;
-      }
-      header .preguntas h5,
-      header .preguntas h1 {
-        text-align: center;
-      }
-      .preguntas .row {
-        display: block;
-      }
-      .preg .row {
-        display: block;
-        text-align: center;
-      }
-      .itempreg {
-        background: #ffffff;
-        box-shadow: 0px 4px 33px rgb(0 134 124 / 20%);
-        border-radius: 58px;
-        display: inline-block;
-        clear: both;
-        width: 83%;
-        padding: 20px 20px 70px 20px;
-        margin: 0 auto 90px auto !important;
-        max-width: 1200px;
-        text-align: left;
-        margin-top: -40px !important;
-      }
-      #inicio {
-        width: 100%;
-        display: block;
-        margin-top: -72px;
-      }
-      .itempreg p {
-        margin: 20px 0;
-      }
-      .itempreg .col-50 {
-        position: relative;
-        vertical-align: middle;
-      }
-      .preg a.btn.bgblue.siguiente {
-        position: absolute;
-        bottom: 10px;
-        width: 90%;
-        max-width: 200px;
-        margin: auto;
-        right: 0;
-        left: 0;
-      }
-      /* The container */
-      .cont {
-        display: block;
-        position: relative;
-        padding-left: 35px;
-        margin-bottom: 25px;
-        cursor: pointer;
-        font-size: 22px;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-        font-size: 17px;
-        font-weight: 800;
-      }
-      /* Hide the browser's default radio button */
-      .cont input {
-        position: absolute;
-        opacity: 0;
-        cursor: pointer;
-      }
-      /* Create a custom radio button */
-      .checkmark {
-        position: absolute;
-        top: -6px;
-        left: 0;
-        height: 25px;
-        width: 25px;
-        background-color: #eee;
-        border-radius: 50%;
-        border: 3px solid #554de4;
-      }
-      /* On mouse-over, add a grey background color */
-      .cont:hover input ~ .checkmark {
-        background-color: #ccc;
-      }
-      /* When the radio button is checked, add a blue background */
-      .cont input:checked ~ .checkmark {
-        background-color: #554de4;
-      }
-      .cont input:unchecked ~ .checkmark {
-        background-color: #fff !important;
-      }
-      /* Create the indicator (the dot/circle - hidden when not checked) */
-      .checkmark:after {
-        content: "";
-        position: absolute;
-        display: none;
-      }
-      /* Show the indicator (dot/circle) when checked */
-      .cont input:checked ~ .checkmark:after {
-        display: block;
-      }
-      /* Style the indicator (dot/circle) */
-      .cont .checkmark:after {
-        top: 5px;
-        left: 5px;
-        width: 15px;
-        height: 15px;
-        border-radius: 50%;
-        background: white;
-      }
-      .preg img {
-        width: 100%;
-        height: auto;
-        max-width: 391px;
-      }
-      /* The container must be positioned relative: */
-      .custom-select {
-        position: relative;
-        font-family: Arial;
-      }
-      .custom-select select {
-        display: none; /*hide original SELECT element: */
-      }
-      .select-selected {
-        background-color: #fff;
-        border: 2px solid #554de4 !important;
-        color: #454545 !important;
-        font-weight: bold;
-        margin: 20px 0;
-        background-image: url("img/down.png");
-        background-position: right center;
-        background-repeat: no-repeat;
-      }
-      /* Style the arrow inside the select element: */
 
-      /* Point the arrow upwards when the select box is open (active): */
-      .select-selected.select-arrow-active:after {
-        border-color: transparent transparent #fff transparent;
-        top: 7px;
-      }
-      /* style the items (options), including the selected item: */
-      .select-items div,
-      .select-selected {
-        color: #ffffff;
-        padding: 8px 16px;
-        border: 1px solid transparent;
-        border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
-        cursor: pointer;
-      }
-      input[type="button"] {
-        font-style: normal;
-        font-weight: 500;
-        font-size: 16px;
-        line-height: 20px;
-        font-family: "Invention Bd", sans-serif;
-        text-align: center;
-        letter-spacing: 2px;
-        padding: 20px 60px;
-        color: #fff;
-        text-decoration: none;
-        text-transform: uppercase;
-        margin: 30px auto;
-        display: block;
-        max-width: 500px;
-        width: auto;
-        margin: auto;
-        border: 1px solid #554de4;
-        position: absolute;
-        bottom: 10px;
-        width: 90%;
-        max-width: 322px;
-        margin: auto;
-        right: 0;
-        left: 0;
-        background: #554de4;
-      }
-      /* Style items (options): */
-      .select-items {
-        position: absolute;
-        background-color: #554de4;
-        top: 100%;
-        left: 0;
-        right: 0;
-        z-index: 99;
-      }
-      /* Hide the items when the select box is closed: */
-      .select-hide {
-        display: none;
-      }
-      .select-items div:hover,
-      .same-as-selected {
-        background-color: rgba(0, 0, 0, 0.1);
-      }
-      .itempreg .col-50.text-center {
-        vertical-align: top;
-      }
-      p.acerca.text-center {
-        position: absolute;
-        bottom: 29px;
-        margin: auto;
-        left: 0;
-        right: 0;
-      }
-      .modal {
-        display: none; /* Hidden by default */
-        position: fixed; /* Stay in place */
-        z-index: 1; /* Sit on top */
-        left: 0;
-        top: 0;
-        width: 100%; /* Full width */
-        height: 100%; /* Full height */
-        overflow: auto; /* Enable scroll if needed */
-        background-color: rgb(0, 0, 0); /* Fallback color */
-        background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
-      }
-      /* Modal Content/Box */
-      .modal-content {
-        background-color: #fefefe;
-        margin: 15% auto; /* 15% from the top and centered */
-        padding: 40px;
-        border: 1px solid #888;
-        position: relative;
-        width: 70%; /* Could be more or less, depending on screen size */
-      }
-      span.cerrar {
-        height: 50px;
-        font-size: 50px;
-        position: absolute;
-        right: 23px;
-        top: 0;
-      }
-      span.cerrar a:link,
-      span.cerrar a:visited {
-        color: #000;
-        text-decoration: none;
-      }
-      /* The Close Button */
-      .close {
-        color: #aaa;
-        float: right;
-        font-size: 28px;
-        font-weight: bold;
-      }
-      .close:hover,
-      .close:focus {
-        color: black;
-        text-decoration: none;
-        cursor: pointer;
-      }
-      #resultados ul {
-        list-style-image: url(img/bullet.png);
-        margin: 0;
-        padding: 0;
-        width: 90%;
-        margin: 50px auto 0 auto;
-      }
-      #resultados ul li {
-        margin: 20px 0;
-        font-family: "Raleway", sans-serif;
-        font-style: normal;
-        font-weight: 500;
-        font-size: 17px;
-        line-height: 20px;
-        color: #454545;
-        list-style-image: url(img/bullet.png);
-      }
-      footer ul li:last-child {
-        border-right: 0;
-      }
+    color: #FFFFFF;
+}
+a.btn.bgblue {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    font-family: 'Invention Bd', sans-serif;
+    text-align: center;
+    letter-spacing: 2px;
+    padding: 20px 60px;
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    margin: 30px auto;
 
-      @media (min-width: 913px) {
-        .col-30 {
-          width: 29% !important;
-          display: inline-block;
-        }
-        .col-50 {
-          width: 49% !important;
-          display: inline-block;
-        }
-        .col-100 {
-          width: 100% !important;
-        }
-        .row {
-          display: flex;
-          width: 100%;
-        }
-        .previniendo .row,
-        .factores .row,
-        .cuidados .row {
-          display: block;
-        }
-        .destacados .col-30 {
-          margin: 0 30px;
-          width: 30%;
-        }
-        footer ul li {
-          margin: 10px 0;
-          padding: 0 5px;
-          list-style: none;
-          border-right: 1px solid #fff;
-        }
-        h5 {
-          font-size: 24px;
-        }
-        h1 {
-          font-size: 44px;
-          line-height: 50px;
-        }
-        h2 {
-          font-size: 44px;
-          line-height: 50px;
-        }
-        header h5 {
-          font-size: 22px;
-          line-height: 30px;
-        }
-        header .col-50:first-child {
-          text-align: left;
-        }
-        header .container .row {
-          align-items: center;
-        }
-        .container.riesgo {
-          padding-top: 90px;
-        }
-        .previniendo .col-50 {
-          vertical-align: middle;
-        }
-        .previniendo .col-100:last-child {
-          padding: 90px 0 0 0;
-        }
-        .cuidados ul li {
-          display: inline-block;
-          width: 12%;
-          vertical-align: top;
-          margin: 0px 2%;
-        }
-        .factores {
-          background-size: auto;
-          padding: 90px 0 50px 0;
-        }
-        .factores ul li {
-          padding-left: 20px;
-        }
-        .col-100.bgcirculo {
-          margin: auto;
-          line-height: 19px;
-          background-position: left center;
-        }
-        .col-100.bgcirculo p {
-          max-width: 763px;
-          margin: auto;
-        }
-        .container.prevenir .row {
-          display: block;
-        }
-        .dsktp {
-          display: block;
-        }
-        .mbl {
-          display: none;
-        }
-        .prevenir .col-50 {
-          width: 31% !important;
-          display: inline-block;
-          margin: 0 2%;
-          padding: 40px;
-        }
-        .container.previniendo,
-        .container.riesgo,
-        .container.cuidados,
-        .container.prevenir,
-        .container.recomendaciones,
-        .container.referencias {
-          width: 95%;
-          margin: auto;
-        }
-        .container.referencias {
-          overflow: hidden;
-        }
-        .container {
-          max-width: 1400px;
-        }
-        .prevenir h2 {
-          margin: 30px 0 60px 0;
-        }
-        header .preguntas {
-          background-image: url(img/bg-header-preguntas.png);
-          background-position: center center;
-          background-size: contain;
-          text-align: center !important;
-          background-repeat: no-repeat;
-          padding: 90px 0 !important;
-        }
-        .preg a.btn.bgblue.siguiente {
-          left: 22%;
-          bottom: 21px;
-        }
-        .itempreg {
-          padding: 70px 20px 70px 20px;
-          min-height: 330px;
-        }
-        div#inicio {
-          margin-bottom: 150px;
-        }
-        #resultados ul {
-          width: 42%;
-        }
-        .modal-content {
-          width: 80%; /* Could be more or less, depending on screen size */
-        }
-      }
-    </style>
-  </head>
+    display: block;
+    max-width: 500px;
+    width: auto;
+    margin: auto;
+    border: 1px solid #554DE4
+}
+a.btn.bgblue:hover {
+    color: #554DE4;
+    background: #fff;
+    border: 1px solid #554DE4
+}
+header .container {
+    width: 100%;
+    max-width: none;
+    padding: 90px 0 150px 0 !important;
+}
+header .container .row {
+    margin: auto;
+    max-width: 1200px;
+    width: 90%
+}
+header .container .row img {
+    width: 100%;
+    margin: auto;
+    height: auto;
+    max-width: 469px
+}
+.container.destacados {
+    margin-top: -88px;
+}
+.destacados .row {
+    text-align: center;
+}
+.destacados .col-30 {
+    background: #FFFFFF;
+    box-shadow: 0px 4px 33px rgba(0, 134, 124, 0.2);
+    border-radius: 58px;
+    text-align: center;
+    font-family: 'Raleway', sans-serif;
+    padding: 0 20px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 18px;
+    align-items: center;
+    text-align: center;
+    color: #454545;
+    margin: 20px auto;
+    width: 75%;
+    min-height: 262px;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: stretch;
+    overflow: hidden;
+}
+.destacados .col-30 img {
+    max-width: 327px;
+    height: auto;
+    margin: auto;
+    width: 100%;
+}
+.bgcirculo {
+    background-image: url(https://image.mail.msd.com.ar/lib/fe9313737664007e7d/m/1/211013circle.png);
+    background-repeat: no-repeat;
+    background-position: center top;
+    padding-top: 33px;
+}
+.destacados h3 {
+    font-weight: 700;
+    margin: 20px 0;
+}
+.destacados p {
+    margin: 20px auto 40px auto
+}
+.container.previniendo, .container.riesgo, .container.cuidados, .container.prevenir, .container.recomendaciones, .container.referencias {
+    width: 90%;
+    margin: auto;
+}
+.container .factores {
+    width: 90%;
+    margin: auto;
+}
+.container.referencias {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 14px;
+    display: flex;
+    align-items: center;
+    color: #454545;
+ overflow: hidden
+}
+.previniendo.container .row img {
+    width: 100%;
+    margin: auto;
+    height: auto;
+    max-width: 469px
+}
+.prevenir .col-50 {
+    background: #FFFFFF;
+    box-shadow: 0px 4px 33px rgba(0, 134, 124, 0.2);
+    border-radius: 58px;
+    overflow: hidden;
+    padding: 40px 20px;
+    width: 87%;
+    margin: 20px auto
+}
+.prevenir h2 {
+    margin: 30px 0
+}
+.referencias a:link, .referencias a:visited {
+    color: #454545;
+    text-decoration: none
+}
+.prevenir .col-50 img {
+    width: 100%;
+    height: auto;
+    max-width: 327px
+}
+.prevenir .col-50 p {
+    margin: 30px 0
+}
+.previniendo ul {
+    list-style-image: url(https://image.mail.msd.com.ar/lib/fe9313737664007e7d/m/1/211013bullet.png);
+    margin: 0;
+    padding: 0;
+    width: 67%;
+    margin: 50px auto;
+}
+.previniendo ul li {
+    margin: 20px 0;
+    font-family: 'Raleway', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 17px;
+    line-height: 20px;
+    color: #454545;
+    list-style-image: url(https://image.mail.msd.com.ar/lib/fe9313737664007e7d/m/1/211013bullet.png);
+}
+.cuidados ul li {
+    margin: 20px 0;
+    font-family: 'Raleway', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 17px;
+    line-height: 20px;
+    list-style: none;
+    color: #454545;
+    text-align: center;
+}
+.cuidados ul li img {
+    display: block;
+    clear: both;
+    margin: 30px auto
+}
+.factores {
+    background-image: url("https://image.mail.msd.com.ar/lib/fe9313737664007e7d/m/1/211013bg-nivel-de-riesto-mbl.jpg");
+    background-repeat: no-repeat;
+    background-position: right top;
+    padding: 90px 0;
+    width: 90%;
+    margin: auto;
+    background-size: 45%;
+}
+.factores ul {
+    margin: 20px 0;
+    width: 60%;
+    margin: auto
+}
+.factores ul li {
+    margin: 20px 0;
+    font-family: 'Raleway', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 17px;
+    line-height: 20px;
+    color: #454545;
+    list-style-image: url(https://image.mail.msd.com.ar/lib/fe9313737664007e7d/m/1/211013bullet.png);
+}
+ .factores ul li::marker {
+padding-top: -5px
+}
+footer {
+    background: #04897F;
+    color: #fff;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 14px;
+    align-items: center;
+    padding: 40px 20px;
+    text-align: center;
+    margin-top: 60px
+}
+footer a:link, footer a:visited {
+    color: #fff;
+}
+footer img {
+    margin-top: 50px
+}
+footer ul {
+    margin: 20px 0;
+    padding: 0;
+    list-style: none
+}
+footer ul li {
+    margin: 10px 0;
+    padding: 0 20px;
+    list-style: none;
+    border-right: 1px solid #fff;
+    width: auto;
+    display: inline-block;
+}
+header .preguntas {
+    background-image: url(https://image.mail.msd.com.ar/lib/fe9313737664007e7d/m/1/211013bg-header-preguntas.png);
+    background-position: center center;
+    background-size: cover;
+    text-align: center !important;
+    background-repeat: no-repeat;
+    padding: 40px 0 !important;
+}
+header .preguntas h5, header .preguntas h1 {
+    text-align: center
+}
+.preguntas .row {
+    display: block;
+}
+.preg .row {
+    display: block;
+    text-align: center
+}
+.itempreg {
+    background: #FFFFFF;
+    box-shadow: 0px 4px 33px rgb(0 134 124 / 20%);
+    border-radius: 58px;
+    display: inline-block;
+    clear: both;
+    width: 83%;
+    padding: 20px 20px 70px 20px;
+    margin: 0 auto 90px auto !important;
+    max-width: 1200px;
+    text-align: left;
+    margin-top: -40px !important;
+}
+#inicio {
+    width: 100%;
+    display: block;
+    margin-top: -72px;
+}
+.itempreg p {
+    margin: 20px 0;
+}
+.itempreg .col-50 {
+    position: relative;
+    vertical-align: middle
+}
+.preg a.btn.bgblue.siguiente {
+    position: absolute;
+    bottom: 82px;
+    width: 90%;
+    max-width: 200px;
+    margin: auto;
+    right: 0;
+    left: 0;
+}
+/* The container */
+.cont {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 25px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    font-size: 17px;
+    font-weight: 800
+}
+/* Hide the browser's default radio button */
+.cont input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+/* Create a custom radio button */
+.checkmark {
+    position: absolute;
+    top: -6px;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+    border-radius: 50%;
+    border: 3px solid #554de4;
+}
+/* On mouse-over, add a grey background color */
+.cont:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+/* When the radio button is checked, add a blue background */
+.cont input:checked ~ .checkmark {
+    background-color: #554de4;
+}
+ .cont input:unchecked ~ .checkmark {
+ background-color: #fff !important;
+}
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+/* Show the indicator (dot/circle) when checked */
+.cont input:checked ~ .checkmark:after {
+    display: block;
+}
+/* Style the indicator (dot/circle) */
+.cont .checkmark:after {
+  top: 5px;
+    left: 5px;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: #554de4;
+}
+.preg img {
+    width: 100%;
+    height: auto;
+    max-width: 391px;
+}
+/* The container must be positioned relative: */
+.custom-select {
+    position: relative;
+    font-family: Arial;
+}
+.custom-select select {
+    display: none; /*hide original SELECT element: */
+}
+.select-selected {
+ background-color: #fff;
+    border: 2px solid #554de4 !important;
+    color: #454545 !important;
+    font-weight: bold;
+    margin: 20px 0;
+background-image: url(https://image.mail.msd.com.ar/lib/fe9313737664007e7d/m/1/211015down.png); 
+background-position: right center;
+background-repeat: no-repeat
 
-  <body
-    onLoad="MM_showHideLayers('inicio','','show','p1','','hide','p2','','hide','p3','','hide','p4','','hide','p5','','hide','p6','','hide','resultados','','hide','myBtn','','hide','myModal','','hide')"
-  >
-    <header>
+}
+
+/* Point the arrow upwards when the select box is open (active): */
+.select-selected.select-arrow-active:after {
+    border-color: transparent transparent #fff transparent;
+    top: 7px;
+}
+/* style the items (options), including the selected item: */
+.select-items div, .select-selected {
+    color: #ffffff;
+    padding: 8px 16px;
+    border: 1px solid transparent;
+    border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+    cursor: pointer;
+}
+input[type="button"] {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    font-family: 'Invention Bd', sans-serif;
+    text-align: center;
+    letter-spacing: 2px;
+    padding: 20px 60px;
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    margin: 30px auto;
+    display: block;
+    max-width: 500px;
+    width: auto;
+    margin: auto;
+    border: 1px solid #554DE4;
+    position: absolute;
+    bottom: 110px;
+    width: 90%;
+    max-width: 322px;
+    margin: auto;
+    right: 0;
+    left: 0;
+    background: #554DE4;
+}
+/* Style items (options): */
+.select-items {
+    position: absolute;
+    background-color: #554de4;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 99;
+}
+/* Hide the items when the select box is closed: */
+.select-hide {
+    display: none;
+}
+.select-items div:hover, .same-as-selected {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+.itempreg .col-50.text-center {
+    vertical-align: top;
+}
+p.acerca.text-center {
+    position: absolute;
+    bottom: 80px;
+    margin: auto;
+    left: 0;
+    right: 0;
+}
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 40px;
+    border: 1px solid #888;
+    position: relative;
+    width: 70%; /* Could be more or less, depending on screen size */
+}
+span.cerrar {
+    height: 50px;
+    font-size: 50px;
+    position: absolute;
+    right: 23px;
+    top: 0;
+}
+span.cerrar a:link, span.cerrar a:visited {
+    color: #000;
+    text-decoration: none
+}
+/* The Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+.close:hover, .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+#resultados ul {
+    list-style-image: url(https://image.mail.msd.com.ar/lib/fe9313737664007e7d/m/1/211013bullet.png);
+    margin: 0;
+    padding: 0;
+    width: 90%;
+    margin: 50px auto 0 auto;
+}
+#resultados ul li {
+    margin: 20px 0;
+    font-family: 'Raleway', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 17px;
+    line-height: 20px;
+    color: #454545;
+    list-style-image: url(https://image.mail.msd.com.ar/lib/fe9313737664007e7d/m/1/211013bullet.png);
+}
+footer ul li:last-child {
+    border-right: 0
+}
+  
+ #p1, #p2, #p3, #p4, #p5, #p6, #resultados
+ {display: none}
+  
+  
+
+@media (min-width: 913px) {
+.col-30 {
+    width: 29%!important;
+    display: inline-block
+}
+.col-50 {
+    width: 49%!important;
+    display: inline-block
+}
+.col-100 {
+    width: 100%!important;
+}
+.row {
+    display: flex;
+    width: 100%
+}
+.previniendo .row, .factores .row, .cuidados .row {
+    display: block
+}
+.destacados .col-30 {
+    margin: 0 30px;
+    width: 30%;
+}
+footer ul li {
+    margin: 10px 0;
+    padding: 0 5px;
+    list-style: none;
+    border-right: 1px solid #fff
+}
+h5 {
+    font-size: 24px
+}
+h1 {
+    font-size: 44px;
+    line-height: 50px;
+}
+h2 {
+    font-size: 44px;
+    line-height: 50px;
+}
+header h5 {
+    font-size: 22px;
+    line-height: 30px;
+}
+header .col-50:first-child {
+    text-align: left
+}
+header .container .row {
+    align-items: center
+}
+.container.riesgo {
+    padding-top: 90px
+}
+.previniendo .col-50 {
+    vertical-align: middle;
+}
+.previniendo .col-100:last-child {
+    padding: 90px 0 0 0
+}
+.cuidados ul li {
+    display: inline-block;
+    width: 12%;
+    vertical-align: top;
+    margin: 0px 2%;
+}
+.factores {
+    background-size: auto;
+    padding: 90px 0 50px 0;
+}
+.factores ul li {
+    padding-left: 20px;
+}
+.col-100.bgcirculo {
+    margin: auto;
+    line-height: 19px;
+    background-position: left center;
+}
+.col-100.bgcirculo p {
+    max-width: 763px;
+    margin: auto
+}
+.container.prevenir .row {
+    display: block;
+}
+.dsktp {
+    display: block
+}
+.mbl {
+    display: none
+}
+.prevenir .col-50 {
+    width: 31% !important;
+    display: inline-block;
+    margin: 0 2%;
+    padding: 40px;
+}
+.container.previniendo, .container.riesgo, .container.cuidados, .container.prevenir, .container.recomendaciones, .container.referencias {
+    width: 95%;
+    margin: auto;
+}
+.container.referencias {
+    overflow: hidden
+}
+.container {
+    max-width: 1400px;
+}
+.prevenir h2 {
+    margin: 30px 0 60px 0;
+}
+header .preguntas {
+    background-image: url(https://image.mail.msd.com.ar/lib/fe9313737664007e7d/m/1/211013bg-header-preguntas.png);
+    background-position: center center;
+    background-size: contain;
+    text-align: center !important;
+    background-repeat: no-repeat;
+    padding: 90px 0 !important;
+}
+.preg a.btn.bgblue.siguiente {
+    left: 22%;
+    bottom: 66px
+}
+.itempreg {
+    padding: 70px 20px 70px 20px;
+    min-height: 330px;
+}
+
+#resultados ul {
+    width: 42%;
+}
+.modal-content {
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+}
+</style>
+ </head>
+
+ <body onLoad="MM_showHideLayers('inicio','','show','p1','','hide','p2','','hide','p3','','hide','p4','','hide','p5','','hide','p6','','hide','resultados','','hide','myBtn','','hide','myModal','','hide')">
+   
+   <!-- Google Tag Manager (noscript) --><noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5ZB3NPL"height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript><!-- End Google Tag Manager (noscript) -->
+   
+   
+<header>
       <div class="container preguntas bggreen pt-90 pb-30">
-        <div class="row">
+    <div class="row ">
           <div class="col-100">
-            <h5>Prueba de riesgo de prediabetes <sup>1</sup></h5>
-            <h1>¿Podría usted tener prediabetes?</h1>
-          </div>
+        <h5>Prueba de riesgo de prediabetes <sup>1</sup></h5>
+        <h1>¿Podría usted tener prediabetes?</h1>
+      </div>
           <div class="col-50 text-center"></div>
         </div>
-      </div>
+  </div>
     </header>
-    <section>
+<section>
       <form>
-        <div class="container preg">
+    <div class="container preg">
           <div class="row">
-            <div id="inicio">
-              <a
-                href="#"
-                class="btn bgblue mt-40 mb-40"
-                onClick="MM_showHideLayers('inicio','','hide','p1','','show','p2','','hide','p3','','hide','p4','','hide','p5','','hide','p6','','hide','resultados','','hide')"
-                >¡Empezá el TEST!</a
-              >
-            </div>
-
-            <div id="p1" class="itempreg">
-              <div class="col-50 text-center">
-                <img
-                  src="img/p1.png"
-                  alt="¿Tiene diabetes su madre, padre, algún hermano o hermana?"
-                />
-              </div>
+        <div id="inicio"><a href="#" class="btn bgblue mt-40 mb-40" onClick="MM_showHideLayers('inicio','','hide','p1','','show','p2','','hide','p3','','hide','p4','','hide','p5','','hide','p6','','hide','resultados','','hide')">¡Empezá el TEST!</a>
+  </div>
+     
+        <div id="p1" class="itempreg">
+              <div class="col-50 text-center"><img src="https://image.mail.msd.com.ar/lib/fe9313737664007e7d/m/1/211013p1.png" alt="¿Tiene diabetes su madre, padre, algún hermano o hermana?"/></div>
               <div class="col-50">
-                <h3>
-                  ¿Tiene diabetes su madre, padre, algún hermano o hermana?
-                </h3>
-                <p>
-                  Tener antecedentes familiares de diabetes podría aumentar su
-                  riesgo de presentar diabetes tipo 2.
-                </p>
-                <label class="cont"
-                  >Si
-                  <input
-                    type="radio"
-                    id="antecedentesSi"
-                    name="preg1"
-                    checked
-                  />
-                  <span class="checkmark"></span>
-                </label>
-                <label class="cont"
-                  >No
-                  <input type="radio" id="antecedentesNo" name="preg1" />
-                  <span class="checkmark"></span>
-                </label>
-              </div>
-              <a
-                href="#"
-                class="btn bgblue mt-40 mb-40 siguiente"
-                onClick="MM_showHideLayers('inicio','','hide','p1','','hide','p2','','show','p3','','hide','p4','','hide','p5','','hide','p6','','hide','resultados','','hide')"
-                >SIGUIENTE</a
-              >
-            </div>
-
-            <div id="p2" class="itempreg">
-              <div class="col-50 text-center">
-                <img
-                  src="img/p2.png"
-                  alt="¿Le han diagnosticado alguna vez presión arterial alta?"
-                />
-              </div>
+            <h3>¿Tiene diabetes su madre, padre, algún hermano o hermana?</h3>
+            <p>Tener antecedentes familiares de diabetes podría aumentar su riesgo de presentar diabetes tipo 2. </p>
+            <label class="cont">Si
+                  <input type="radio" id="antecedentesSi" name="preg1" checked>
+                  <span class="checkmark"></span> </label>
+            <label class="cont">No
+                  <input type="radio" id="antecedentesNo" name="preg1">
+                  <span class="checkmark"></span> </label>
+          </div>
+              <a href="#" class="btn bgblue mt-40 mb-40 siguiente" onClick="MM_showHideLayers('inicio','','hide','p1','','hide','p2','','show','p3','','hide','p4','','hide','p5','','hide','p6','','hide','resultados','','hide')">SIGUIENTE</a>
+     </div>
+     
+        <div id="p2" class="itempreg">
+              <div class="col-50 text-center"><img src="https://image.mail.msd.com.ar/lib/fe9313737664007e7d/m/1/211013p2.png" alt="¿Le han diagnosticado alguna vez presión arterial alta?"/></div>
               <div class="col-50">
-                <h3>¿Le han diagnosticado alguna vez presión arterial alta?</h3>
-                <p>
-                  Tener presión arterial alta aumenta su riesgo general de
-                  presentar diabetes tipo 2.
-                </p>
-                <label class="cont"
-                  >Si
-                  <input type="radio" id="diagnosticoSi" name="preg2" checked />
-                  <span class="checkmark"></span>
-                </label>
-                <label class="cont"
-                  >No
-                  <input type="radio" id="diagnosticoNo" name="preg2" />
-                  <span class="checkmark"></span>
-                </label>
-              </div>
-              <a
-                href="#"
-                class="btn bgblue mt-40 mb-40 siguiente"
-                onClick="MM_showHideLayers('inicio','','hide','p1','','hide','p2','','hide','p3','','show','p4','','hide','p5','','hide','p6','','hide','resultados','','hide')"
-                >SIGUIENTE</a
-              >
-            </div>
-
-            <div id="p3" class="itempreg">
-              <div class="col-50 text-center">
-                <img
-                  src="img/p3.png"
-                  alt="
-¿Qué edad tiene usted?"
-                />
-              </div>
+            <h3>¿Le han diagnosticado alguna vez presión arterial alta?</h3>
+            <p>Tener presión arterial alta aumenta su riesgo general de presentar diabetes tipo 2.</p>
+            <label class="cont">Si
+                  <input type="radio"  id="diagnosticoSi" name="preg2" checked>
+                  <span class="checkmark"></span> </label>
+            <label class="cont">No
+                  <input type="radio" id="diagnosticoNo" name="preg2">
+                  <span class="checkmark"></span> </label>
+          </div>
+              <a href="#" class="btn bgblue mt-40 mb-40 siguiente" onClick="MM_showHideLayers('inicio','','hide','p1','','hide','p2','','hide','p3','','show','p4','','hide','p5','','hide','p6','','hide','resultados','','hide')">SIGUIENTE</a></div>
+     
+     
+        <div id="p3" class="itempreg">
+              <div class="col-50 text-center"><img src="https://image.mail.msd.com.ar/lib/fe9313737664007e7d/m/1/211013p3.png" alt="
+¿Qué edad tiene usted?"/></div>
               <div class="col-50">
-                <h3>¿Qué edad tiene usted?</h3>
-                <p>
-                  Cuantos más años tenga, mayor es el riesgo de presentar
-                  diabetes tipo 2.
-                </p>
-                <label class="cont"
-                  >Menos de 40 años
-                  <input type="radio" id="edadMenos40" name="preg3" checked />
-                  <span class="checkmark"></span>
-                </label>
-                <label class="cont"
-                  >40-49 años
-                  <input type="radio" id="edad40-49" name="preg3" />
-                  <span class="checkmark"></span>
-                </label>
-                <label class="cont"
-                  >50-59 años
-                  <input type="radio" id="edad50-59" name="preg3" />
-                  <span class="checkmark"></span>
-                </label>
-                <label class="cont"
-                  >60 años o más
-                  <input type="radio" id="edad60" name="preg3" />
-                  <span class="checkmark"></span>
-                </label>
-              </div>
-              <a
-                href="#"
-                class="btn bgblue mt-40 mb-40 siguiente"
-                onClick="MM_showHideLayers('inicio','','hide','p1','','hide','p2','','hide','p3','','hide','p4','','show','p5','','hide','p6','','hide','resultados','','hide');MM_showHideLayers('inicio','','hide','p1','','hide','p2','','hide','p3','','hide','p4','','show','p5','','hide','p6','','hide','resultados','','hide','myBtn','','hide')"
-                >SIGUIENTE</a
-              >
-            </div>
-
-            <div id="p4" class="itempreg">
-              <div class="col-50 text-center">
-                <img
-                  src="img/p4.png"
-                  alt="
-¿Hace actividad  física?"
-                />
-              </div>
+            <h3> ¿Qué edad tiene usted?</h3>
+            <p>Cuantos más años tenga,  mayor es el  riesgo de presentar diabetes tipo 2. </p>
+            <label class="cont">Menos de 40 años
+                  <input type="radio"  id="edadMenos40" name="preg3" checked>
+                  <span class="checkmark"></span> </label>
+            <label class="cont">40-49 años
+                  <input type="radio" id="edad40-49" name="preg3">
+                  <span class="checkmark"></span> </label>
+            <label class="cont">50-59 años
+                  <input type="radio" id="edad50-59" name="preg3">
+                  <span class="checkmark"></span> </label>
+            <label class="cont">60 años o más
+                  <input type="radio" id="edad60" name="preg3">
+                  <span class="checkmark"></span> </label>
+          </div>
+              <a href="#" class="btn bgblue mt-40 mb-40 siguiente" onClick="MM_showHideLayers('inicio','','hide','p1','','hide','p2','','hide','p3','','hide','p4','','show','p5','','hide','p6','','hide','resultados','','hide');MM_showHideLayers('inicio','','hide','p1','','hide','p2','','hide','p3','','hide','p4','','show','p5','','hide','p6','','hide','resultados','','hide','myBtn','','hide')">SIGUIENTE</a>
+     
+     
+     </div>
+       
+     
+     <div id="p4" class="itempreg">
+              <div class="col-50 text-center"><img src="https://image.mail.msd.com.ar/lib/fe9313737664007e7d/m/1/211013p4.png" alt="
+¿Hace actividad  física?"/></div>
               <div class="col-50">
-                <h3>¿Hace actividad física?</h3>
-                <p>
-                  No hacer actividad física puede aumentar su riesgo de
-                  presentar diabetes tipo 2.
-                </p>
-                <label class="cont"
-                  >Si
-                  <input type="radio" id="actividadSi" name="preg4" checked />
-                  <span class="checkmark"></span>
-                </label>
-                <label class="cont"
-                  >No
-                  <input type="radio" id="actividadNo" name="preg4" />
-                  <span class="checkmark"></span>
-                </label>
-              </div>
-              <a
-                href="#"
-                class="btn bgblue mt-40 mb-40 siguiente"
-                onClick="MM_showHideLayers('inicio','','hide','p1','','hide','p2','','hide','p3','','hide','p4','','hide','p5','','show','p6','','hide','resultados','','hide')"
-                >SIGUIENTE</a
-              >
-            </div>
-
-            <div id="p5" class="itempreg">
-              <div class="col-50 text-center">
-                <img
-                  src="img/p5.png"
-                  alt="
-¿Es usted hombre o mujer?"
-                />
-              </div>
+            <h3> ¿Hace actividad  física?</h3>
+            <p>No hacer actividad física puede aumentar su riesgo de presentar diabetes tipo 2. </p>
+            <label class="cont">Si
+                  <input type="radio" id="actividadSi" name="preg4" checked>
+                  <span class="checkmark"></span> </label>
+            <label class="cont">No
+                  <input type="radio" id="actividadNo" name="preg4">
+                  <span class="checkmark"></span> </label>
+          </div>
+              <a href="#" class="btn bgblue mt-40 mb-40 siguiente" onClick="MM_showHideLayers('inicio','','hide','p1','','hide','p2','','hide','p3','','hide','p4','','hide','p5','','show','p6','','hide','resultados','','hide')">SIGUIENTE</a>
+    </div>
+       
+     
+     <div id="p5" class="itempreg">
+              <div class="col-50 text-center"><img src="https://image.mail.msd.com.ar/lib/fe9313737664007e7d/m/1/211013p5.png" alt="
+¿Es usted hombre o mujer?"/></div>
               <div class="col-50">
-                <h3>¿Es usted hombre o mujer?</h3>
-                <p>
-                  Los hombres tienen más probabilidades que las mujeres de tener
-                  diabetes no diagnosticada; una razón puede ser que es menos
-                  probable que vean al médico regularmente
-                </p>
-                <label class="cont"
-                  >Hombre
-                  <input type="radio" id="hombre" name="preg5" checked />
-                  <span class="checkmark"></span>
-                </label>
-                <label class="cont"
-                  >Mujer
-                  <input type="radio" id="mujer" name="preg5" />
-                  <span class="checkmark"></span>
-                </label>
-              </div>
-              <a
-                href="#"
-                class="btn bgblue mt-40 mb-40 siguiente"
-                onClick="MM_showHideLayers('inicio','','hide','p1','','hide','p2','','hide','p3','','hide','p4','','hide','p5','','hide','p6','','show','resultados','','hide')"
-                >SIGUIENTE</a
-              >
-            </div>
-
-            <div id="p6" class="itempreg">
-              <div class="col-50 text-center">
-                <img
-                  src="img/p6.png"
-                  alt="
-¿Cuánto mide usted?"
-                />
-              </div>
+            <h3> ¿Es usted hombre o mujer?</h3>
+            <p>Los hombres tienen  más probabilidades que las mujeres de  tener diabetes no 
+                  diagnosticada; una razón puede ser que  es menos probable que vean al médico regularmente </p>
+            <label class="cont">Hombre
+                  <input type="radio" id="hombre" name="preg5" checked>
+                  <span class="checkmark"></span> </label>
+            <label class="cont">Mujer
+                  <input type="radio" id="mujer" name="preg5">
+                  <span class="checkmark"></span> </label>
+          </div>
+              <a href="#" class="btn bgblue mt-40 mb-40 siguiente" onClick="MM_showHideLayers('inicio','','hide','p1','','hide','p2','','hide','p3','','hide','p4','','hide','p5','','hide','p6','','show','resultados','','hide')">SIGUIENTE</a>
+     </div>
+       
+     
+     <div id="p6" class="itempreg">
+              <div class="col-50 text-center"><img src="https://image.mail.msd.com.ar/lib/fe9313737664007e7d/m/1/211013p6.png" alt="
+¿Cuánto mide usted?"/></div>
               <div class="col-50">
-                <h3>¿Cuánto mide usted?</h3>
-                <p>
-                  La combinación de su peso y su estatura nos da su indice de
-                  masa corporal (IMC). Las personas con un IMC más alto tienen
-                  mayor riesgo
-                </p>
-                <div class="custom-select" name="altura">
+            <h3> ¿Cuánto mide usted?</h3>
+            <p>La combinación de su peso y su estatura nos da su indice de masa corporal (IMC). Las 
+                  personas con un IMC más alto tienen  mayor riesgo </p>
+            <div class="custom-select" name="altura">
                   <select id="selAltura">
-                    <option value="1.47">147 cm</option>
-                    <option value="1.50">150 cm</option>
-                    <option value="1.52">152 cm</option>
-                    <option value="1.55">155 cm</option>
-                    <option value="1.57">157 cm</option>
-                    <option value="1.60">160 cm</option>
-                    <option value="1.63">163 cm</option>
-                    <option value="1.65">165 cm</option>
-                    <option value="1.68">168 cm</option>
-                    <option value="1.70">170 cm</option>
-                    <option value="1.73">173 cm</option>
-                    <option value="1.75">175 cm</option>
-                    <option value="1.78">178 cm</option>
-                    <option value="1.80">180 cm</option>
-                    <option value="1.83">183 cm</option>
-                    <option value="1.85">185 cm</option>
-                    <option value="1.88">188 cm</option>
-                    <option value="1.91">191 cm</option>
-                    <option value="1.93">193 cm</option>
-                  </select>
+                <option value="1.47">147 cm</option>
+                <option value="1.50">150 cm</option>
+                <option value="1.52">152 cm</option>
+                <option value="1.55">155 cm</option>
+                <option value="1.57">157 cm</option>
+                <option value="1.60">160 cm</option>
+                <option value="1.63">163 cm</option>
+                <option value="1.65">165 cm</option>
+                <option value="1.68">168 cm</option>
+                <option value="1.70">170 cm </option>
+                <option value="1.73">173 cm</option>
+                <option value="1.75">175 cm</option>
+                <option value="1.78">178 cm</option>
+                <option value="1.80">180 cm</option>
+                <option value="1.83">183 cm</option>
+                <option value="1.85">185 cm</option>
+                <option value="1.88">188 cm</option>
+                <option value="1.91">191 cm</option>
+                <option value="1.93">193 cm</option>
+              </select>
                 </div>
-                <h3>Por favor seleccione su peso</h3>
-                <div class="custom-select" name="peso">
+            <h3> Por favor seleccione su peso</h3>
+            <div class="custom-select" name="peso">
                   <select id="selPeso">
-                    <option value="53">Menor a 54 kg</option>
-                    <option value="60">entre 54 - 64 kg</option>
-                    <option value="70">entre 65-85 kg</option>
-                    <option value="100">Mayor a 86 kg</option>
-                  </select>
+                <option value="53">Menor a 54 kg</option>
+                <option value="60">entre 54 - 64 kg</option>
+                <option value="70">entre 65-85 kg</option>
+                <option value="100">Mayor a 86 kg</option>
+              </select>
                 </div>
-              </div>
-              <input
-                type="button"
-                onClick="resultado(); MM_showHideLayers('inicio','','hide','p1','','hide','p2','','hide','p3','','hide','p4','','hide','p5','','hide','p6','','hide','resultados','','show','myBtn','','show')"
-                value=" SIGUIENTE "
-              />
-            </div>
-            <div
-              id="resultados"
-              class="itempreg text-center"
-              style="display: block"
-            >
+          </div>
+    <a href="#" class="btn bgblue mt-40 mb-40 siguiente" onclick="resultado(); MM_showHideLayers('inicio','','hide','p1','','hide','p2','','hide','p3','','hide','p4','','hide','p5','','hide','p6','','hide','resultados','','show','myBtn','','show')">SIGUIENTE</a>
+               </div>
+        <div id="resultados" class="itempreg text-center" style="display: block">
               <div class="col-100 text-center">
-                <h3>
-                  SU PUNTAJE:
+            <h3> SU PUNTAJE:
                   <label id="totalnota"></label>
-                  de 1O (RIESGO
-                  <label
-                    style="text-transform: uppercase"
-                    id="totalriesgo"
-                  ></label>
-                  DE PREDIABETES)
-                </h3>
-                <br />
-                <p class="text-center">
-                  <a
-                    href="#"
-                    id="myBtn"
-                    style="color: #454545"
-                    onClick="MM_showHideLayers('myModal','','show')"
-                    >Cómo se da el puntaje en su prueba</a
-                  >
-                  <img src="img/swirl.png" alt="" />
-                </p>
-              </div>
-              <p class="text-center">
-                Según sus resultados, usted tiene un riesgo <label id="totalriesgo2"></label> de prediabetes.
-                <strong class="green">¡Siga haciendo un buen trabajo! </strong
-                ><br />
-                Estos hábitos saludables ayudarán a mantener su riesgo bajo:
-              </p>
+                  de 1O (RIESGO BAJO DE PREDIABETES)</h3>
+            <br>
+            <p class="text-center"><a href="#" id="myBtn" style="color:#454545" onClick="MM_showHideLayers('myModal','','show')">Cómo se da el puntaje en su prueba</a> <img src="https://image.mail.msd.com.ar/lib/fe9313737664007e7d/m/1/211013swirl.png" alt="img/swirl.png"/></p>
+          </div>
+              <p class="text-center">Según sus resultados, usted tiene un riesgo bajo de prediabetes. <strong class="green">¡Siga haciendo un buen trabajo! </strong><br>
+            Estos hábitos saludables ayudarán a mantener su riesgo bajo:</p>
               <ul class="resultados">
-                <li>
-                  Hacer al menos 150 minutos de actividad física a la semana.
-                </li>
-                <li>Mantener su peso dentro de un rango saludable.</li>
-                <li>
-                  Comer alimentos saludables, entre ellos muchas frutas y
-                  verduras
-                </li>
-                <li>Beber más agua y pocas bebidas azucaradas.</li>
-                <li>No fumar.</li>
-              </ul>
-              <p class="acerca text-center">
-                <a href="#" id="myBtn2" style="color: #454545"
-                  >Acerca de la Prueba de riesgo de prediabetes</a
-                >
-              </p>
-            </div>
-          </div>
+            <li>Hacer al menos 150 minutos de actividad física a la semana. </li>
+            <li>Mantener su peso dentro de un rango saludable. </li>
+            <li>Comer alimentos saludables, entre ellos muchas frutas y verduras </li>
+            <li>Beber más agua y pocas bebidas azucaradas. </li>
+            <li>No fumar. </li>
+          </ul>
+              <p class="acerca text-center"><a href="#" id="myBtn2" style="color:#454545">Acerca de la Prueba de riesgo de prediabetes</a></p>
+            </div><small style="margin: 0 auto 30px auto; display: inline-block">Fuente: CDC. Materiales desarrollados porCDC y ADA en Estados Unidos. Prueba de riesgo de diabetes.</small>
+      </div>
         </div>
-      </form>
-      <div class="container referencias mt-90">
-        <div class="row">
+  </form>
+      <div class="container referencias mt-90" >
+    <div class="row">
           <div class="col-100">
-            <small style="margin-bottom: 30px; display: inline-block"
-              >Fuente: CDC. Materiales desarrollados por CDC. Prueba de riesgo
-              de prediabetes.</small
-            ><br />
-            <br />
-            <p>
-              Referencias:<br />
-              <br />
+        <br/>
+        <p> Referencias:<br/>
+              <br/>
             </p>
-            <p>
-              1. CDC. Diabetes en español. Prueba de riesgo de prediabetes.
-              Disponible en:
-              <a
-                href="https://www.cdc.gov/prediabetes/spanish/risktest/index.html"
-                target="_blank"
-                >https://www.cdc.gov/prediabetes/spanish/risktest/index.html</a
-              >. Última actualización de la página 26/04/2021. Consultada en:
-              septiembre de 2021.
-            </p>
-          </div>
-        </div>
+        <p>1. CDC. Diabetes en español. Prueba de riesgo de prediabetes. Disponible en: <a href="https://www.cdc.gov/prediabetes/spanish/risktest/index.html" target="_blank">https://www.cdc.gov/prediabetes/spanish/risktest/index.html</a>. Última actualización de la página 26/04/2021. Consultada en: septiembre de 2021.</p>
       </div>
-
-      <!-- The Modal -->
-      <div id="myModal" class="modal">
-        <!-- Modal content -->
-        <div class="modal-content">
-          <span
-            class="cerrar"
-            onClick="MM_showHideLayers('myModal','','hide')"
-            onfocus="MM_changeProp('myModal','','display','none','DIV')"
-            ><a href="#">&times;</a></span
-          >
-          <h3 class="text-center mt-40 mb-40">
-            Cómo se saca el puntaje de su prueba
-          </h3>
-          <p class="text-center">
-            Para calcular el puntaje, se sumaron los puntos correspondientes a
-            cada factor de riesgo. Por ejemplo, si usted respondió "sí" a la
-            pregunta "¿Tiene diabetes su madre, padre, algún hermano o alguna
-            hermana?", tiene 1 punto por Antecedentes familiares. Si respondió
-            "no" a la pregunta "¿Le han diagnosticado alguna vez presión
-            arterial alta?", su puntaje fue 0 por Presión arterial alta, y así
-            con todos los factores de riesgo. Se considera que un puntaje de 5 o
-            más muestra un riesgo alto de tener prediabetes.
-          </p>
-          <p class="text-center">
-            <br />
-            <strong>Antecedentes familiares</strong><br />
-            Sí: 1 punto<br />
-            No: 0 puntos
-          </p>
-          <br />
-          <p class="text-center">
-            Existe un vínculo entre los antecedentes familiares y la diabetes
-            tipo 2, pero no solo porque los miembros de la familia estén
-            emparentados, sino porque a veces comparten ciertos hábitos que
-            pueden aumentar el riesgo.
-          </p>
-          <p class="text-center">
-            <br />
-            <strong>Presión arterial alta</strong><br />
-            Sí: 1 punto<br />
-            No: 0 puntos
-          </p>
-          <p class="text-center">
-            <br />
-            La presión arterial alta aumenta su riesgo de presentar diabetes
-            tipo 2. También puede aumentar su riesgo de tener enfermedad
-            cardiaca, problemas en los ojos y enfermedad de los riñones, o de
-            que empeoren.
-          </p>
-          <p class="text-center">
-            <br />
-            <strong>Edad</strong><br />
-            Menos de 40 años: 0 puntos<br />
-            40-49 años: 1 punto<br />
-            50-59 años: 2 puntos<br />
-            60 años o más: 3 puntos
-          </p>
-          <br />
-          <p class="text-center">
-            Mientras más años tenga, mayor es su riesgo de presentar diabetes
-            tipo 2. El riesgo comienza a aumentar a alrededor de los 45 años y
-            aumenta bastante después de los 65.
-          </p>
-          <p class="text-center">
-            <br />
-            <strong>Grupo étnico</strong><br />
-            Los afroamericanos, los hispanos o latinos, los indígenas de los EE.
-            UU., los asiaticoamericanos y los nativos de las islas del Pacífico
-            tienen un riesgo más alto de presentar diabetes tipo 2. Los
-            asiaticoamericanos tienen un riesgo más alto de presentar diabetes
-            tipo 2 con un peso más bajo que las personas de otros grupos
-            étnicos.
-          </p>
-          <p class="text-center">
-            <br />
-            <strong>Actividad física</strong><br />
-            Sí: 0 puntos<br />
-            No: 1 punto<br />
-          </p>
-          <p class="text-center">
-            <br />
-            La falta de actividad física es un factor de riesgo conocido para la
-            diabetes tipo 2. Uno de los motivos es que cuando no se hace
-            actividad física en forma regular, el cuerpo no puede usar la
-            insulina adecuadamente. La insulina ayuda a evitar que los niveles
-            de azúcar en la sangre suban demasiado.
-          </p>
-          <p class="text-center">
-            <br />
-            <strong>Sexo</strong><br />
-            Hombre: 1 punto<br />
-            Mujer: 0 puntos<br />
-            Mujer que ha tenido diabetes gestacional: 1 punto<br />
-          </p>
-          <p class="text-center">
-            <br />
-            Hay más hombres que mujeres entre las personas que tienen diabetes
-            sin diagnosticar; es posible que esto se deba a que es menos
-            probable que los hombres vean a su médico con regularidad. La
-            diabetes gestacional (diabetes durante el embarazo) desaparece
-            después de que nace el bebé, pero aumenta el riesgo de las mujeres
-            de presentar diabetes tipo 2 en el futuro.
-          </p>
-          <p class="text-center">
-            <br />
-            <strong>IMC</strong><br />
-            < 25 (< 23 si es de origen asiático): 0 puntos<br />
-            25-29 (23-29 si es de origen asiático): 1 punto<br />
-            30–39: 2 puntos<br />
-            40+: 3 puntos<br />
-          </p>
-          <p class="text-center">
-            <br />
-            El índice de masa corporal, o IMC, es una medida que compara la
-            estatura y el peso. Por ejemplo, una persona que mide 5’3” y pesa
-            120 libras tiene un IMC de 21 y se encuentra en el rango normal:
-          </p>
-          <p class="text-center">
-            <br />
-            <strong>Situación de peso IMC</strong><br />
-            Normal 18.5-24.9<br />
-            Sobrepeso 25-29.9<br />
-            Obeso 30 o más
-          </p>
-          <br />
-          <p class="text-center">
-            Las personas con mayor IMC tienen un riesgo más alto de presentar
-            diabetes tipo 2.
-          </p>
         </div>
-      </div>
-
+  </div>
+      
       <!-- The Modal -->
-      <div id="myModal2" class="modal">
-        <!-- Modal content -->
-        <div class="modal-content">
-          <span
-            class="cerrar"
-            onClick="MM_showHideLayers('myModal2','','hide')"
-            onfocus="MM_changeProp('myModal2','','display','none','DIV')"
-            ><a href="#">&times;</a></span
-          >
+      <div id="myModal" class="modal"> 
+    
+    <!-- Modal content -->
+    <div class="modal-content"> <span class="cerrar" onClick="MM_showHideLayers('myModal','','hide')" onfocus="MM_changeProp('myModal','','display','none','DIV')"><a href="#">&times;</a></span>
+          <h3 class="text-center mt-40 mb-40">Cómo se saca el puntaje de su prueba</h3>
+          <p class="text-center"> Para calcular el puntaje, se sumaron los puntos correspondientes a cada factor de riesgo. Por ejemplo, si usted respondió "sí" a la pregunta "¿Tiene diabetes su madre, padre, algún hermano o alguna hermana?", tiene 1 punto por Antecedentes familiares. Si respondió "no" a la pregunta "¿Le han diagnosticado alguna vez presión arterial alta?", su puntaje fue 0 por Presión arterial alta, y así con todos los factores de riesgo. Se considera que un puntaje de 5 o más muestra un riesgo alto de tener prediabetes.</p>
+          <p class="text-center"> <br/>
+        <strong>Antecedentes familiares</strong><br/>
+        Sí: 1 punto<br/>
+        No: 0 puntos</p>
+          <br/>
+          <p class="text-center"> Existe un vínculo entre los antecedentes familiares y la diabetes tipo 2, pero no solo porque los miembros de la familia estén emparentados, sino porque a veces comparten ciertos hábitos que pueden aumentar el riesgo.</p>
+          <p class="text-center"> <br/>
+        <strong>Presión arterial alta</strong><br/>
+        Sí: 1 punto<br/>
+        No: 0 puntos</p>
+          <p class="text-center"><br/>
+        La presión arterial alta aumenta su riesgo de presentar diabetes tipo 2. También puede aumentar su riesgo de tener enfermedad cardiaca, problemas en los ojos y enfermedad de los riñones, o de que empeoren.</p>
+          <p class="text-center"> <br/>
+        <strong>Edad</strong><br/>
+        Menos de 40 años: 0 puntos<br/>
+        40-49 años: 1 punto<br/>
+        50-59 años: 2 puntos<br/>
+        60 años o más: 3 puntos</p>
+          <br/>
+          <p class="text-center"> Mientras más años tenga, mayor es su riesgo de presentar diabetes tipo 2. El riesgo comienza a aumentar a alrededor de los 45 años y aumenta bastante después de los 65. </p>
+          <p class="text-center"> <br/>
+        <strong>Grupo étnico</strong><br/>
+        Los afroamericanos, los hispanos o latinos, los indígenas de los EE. UU., los asiaticoamericanos y los nativos de las islas del Pacífico tienen un riesgo más alto de presentar diabetes tipo 2. Los asiaticoamericanos tienen un riesgo más alto de presentar diabetes tipo 2 con un peso más bajo que las personas de otros grupos étnicos. </p>
+          <p class="text-center"> <br/>
+        <strong>Actividad física</strong><br/>
+        Sí: 0 puntos<br/>
+        No: 1 punto<br/>
+      </p>
+          <p class="text-center"> <br/>
+        La falta de actividad física es un factor de riesgo conocido para la diabetes tipo 2. Uno de los motivos es que cuando no se hace actividad física en forma regular, el cuerpo no puede usar la insulina adecuadamente. La insulina ayuda a evitar que los niveles de azúcar en la sangre suban demasiado. </p>
+          <p class="text-center"> <br/>
+        <strong>Sexo</strong><br/>
+        Hombre: 1 punto<br/>
+        Mujer: 0 puntos<br/>
+        Mujer que ha tenido diabetes gestacional: 1 punto<br/>
+      </p>
+          <p class="text-center"> <br/>
+        Hay más hombres que mujeres entre las personas que tienen diabetes sin diagnosticar; es posible que esto se deba a que es menos probable que los hombres vean a su médico con regularidad. La diabetes gestacional (diabetes durante el embarazo) desaparece después de que nace el bebé, pero aumenta el riesgo de las mujeres de presentar diabetes tipo 2 en el futuro. </p>
+          <p class="text-center"> <br/>
+        <strong>IMC</strong><br/>
+        < 25 (< 23 si es de origen asiático): 0 puntos<br/>
+        25-29 (23-29 si es de origen asiático): 1 punto<br/>
+        30–39: 2 puntos<br/>
+        40+: 3 puntos<br/>
+      </p>
+          <p class="text-center"> <br/>
+        El índice de masa corporal, o IMC, es una medida que compara la estatura y el peso. Por ejemplo, una persona que mide 5’3” y pesa 120 libras tiene un IMC de 21 y se encuentra en el rango normal:</p>
+          <p class="text-center"> <br/>
+        <strong>Situación de peso IMC</strong><br/>
+        Normal 18.5-24.9<br/>
+        Sobrepeso 25-29.9<br/>
+        Obeso 30 o más</p>
+          <br/>
+          <p class="text-center"> Las personas con mayor IMC tienen un riesgo más alto de presentar diabetes tipo 2.</p>
+        </div>
+  </div>
+      
+      <!-- The Modal -->
+      <div id="myModal2" class="modal"> 
+    
+    <!-- Modal content -->
+    <div class="modal-content"> <span class="cerrar" onClick="MM_showHideLayers('myModal2','','hide')" onfocus="MM_changeProp('myModal2','','display','none','DIV')"><a href="#">&times;</a></span>
           <h3>Acerca de la prueba de riesgo de prediabetes</h3>
-          <br />
-          <p>
-            Más de 84 millones de adultos en los EE. UU. (1 de cada 3) tienen
-            prediabetes, una afección en la que los niveles de azúcar en la
-            sangre son más altos que lo normal, pero no tan altos para que se
-            diagnostique diabetes tipo 2. Además, casi el 90 % de esas personas
-            no saben que tienen prediabetes. Tenerla aumenta enormemente la
-            probabilidad de presentar diabetes tipo 2 y otras afecciones graves.
-            Es esencial que las personas en los EE. UU. se informen sobre cuál
-            es su riesgo de prediabetes, se hagan pruebas regularmente y tomen
-            las medidas necesarias para retrasar o prevenir la diabetes tipo 2.
-          </p>
-          <br />
-          <p>
-            La Asociación Americana de la Diabetes (ADA) lanzó su primera prueba
-            de riesgo en 1993. La prueba de riesgo se adaptó mediante un estudio
-            publicado y se validó con datos de los Centros para el Control y la
-            Prevención de Enfermedades (CDC). Para simplificar la prueba, solo
-            se incluyeron características de salud que las personas sabrían
-            sobre sí mismas, como la edad, la estatura y el peso, pero no se
-            incluyeron el nivel de azúcar en la sangre ni el colesterol.
-          </p>
-          <br />
-          <p>
-            Una persona con puntaje alto en la prueba de riesgo que se hace en
-            línea (cinco o más) tiene un riesgo importante de presentar
-            prediabetes. Sin embargo, solo un análisis de sangre puede
-            determinar un diagnóstico oficial.
-          </p>
+          <br/>
+          <p>Más de 84 millones de adultos en los EE. UU. (1 de cada 3) tienen prediabetes, una afección en la que los niveles de azúcar en la sangre son más altos que lo normal, pero no tan altos para que se diagnostique diabetes tipo 2. Además, casi el 90 % de esas personas no saben que tienen prediabetes. Tenerla aumenta enormemente la probabilidad de presentar diabetes tipo 2 y otras afecciones graves. Es esencial que las personas en los EE. UU. se informen sobre cuál es su riesgo de prediabetes, se hagan pruebas regularmente y tomen las medidas necesarias para retrasar o prevenir la diabetes tipo 2.</p>
+          <br/>
+          <p>La Asociación Americana de la Diabetes (ADA) lanzó su primera prueba de riesgo en 1993. La prueba de riesgo se adaptó mediante un estudio publicado y se validó con datos de los Centros para el Control y la Prevención de Enfermedades (CDC). Para simplificar la prueba, solo se incluyeron características de salud que las personas sabrían sobre sí mismas, como la edad, la estatura y el peso, pero no se incluyeron el nivel de azúcar en la sangre ni el colesterol. </p>
+          <br/>
+          <p>Una persona con puntaje alto en la prueba de riesgo que se hace en línea (cinco o más) tiene un riesgo importante de presentar prediabetes. Sin embargo, solo un análisis de sangre puede determinar un diagnóstico oficial.</p>
         </div>
-      </div>
+  </div>
     </section>
-    <footer class-="bggreen">
+<footer class-="bggreen">
       <ul>
-        <li>
-          <a href="https://conecta.msd.com.ar/terminos-y-condiciones-de-uso/"
-            >Términos y condiciones de uso</a
-          >
-        </li>
-        <li>
-          <a href="https://conecta.msd.com.ar/aviso-de-privacidad/"
-            >Aviso de privacindad</a
-          >
-        </li>
-        <li>
-          <a
-            href="https://www.corporativo.msd.com.ar/acerca-de-nosotros/politica-de-privacidad.xhtml"
-            >Política de privacidad</a
-          >
-        </li>
-      </ul>
-      AR-NON-00260<br />
-      D.R. © 2021 Merck Sharp & Dohme Corp., una subsidiaria de Merck & Co.,
-      Inc., Kenilworth, NJ, USA.<br />
-      Todos los derechos reservados. Prohibida su reproducción total o
-      parcial.<br />
-      MSD ARGENTINA S.R.L.<br />
-      Cazadores de Coquimbo 2841/57, Piso 4 (B1605AZE) - Munro - Vicente López -
-      Bs. As. / Tel.: 11-6090-7200 //
-      <a href="http://www.msd.com.ar" target="_blank">www.msd.com.ar</a> //
-      <a href="mailto: recepcion_argentina@merck.com"
-        >recepcion_argentina@merck.com</a
-      >
-      <br />
-      <img src="img/logo-banco.png" alt="MSD" />
-    </footer>
-  </body>
-  <script>
-    var x, i, j, l, ll, selElmnt, a, b, c;
-    /* Look for any elements with the class "custom-select": */
-    x = document.getElementsByClassName("custom-select");
-    l = x.length;
-    for (i = 0; i < l; i++) {
-      selElmnt = x[i].getElementsByTagName("select")[0];
-      ll = selElmnt.length;
-      /* For each element, create a new DIV that will act as the selected item: */
-      a = document.createElement("DIV");
-      a.setAttribute("class", "select-selected");
-      a.innerHTML = selElmnt.options[selElmnt.selectedIndex].innerHTML;
-      x[i].appendChild(a);
-      /* For each element, create a new DIV that will contain the option list: */
-      b = document.createElement("DIV");
-      b.setAttribute("class", "select-items select-hide");
-      for (j = 1; j < ll; j++) {
-        /* For each option in the original select element,
+    <li><a href="https://conecta.msd.com.ar/terminos-y-condiciones-de-uso/">Términos y condiciones de uso</a></li>
+    <li><a href="https://conecta.msd.com.ar/aviso-de-privacidad/">Aviso de privacindad</a></li>
+    <li><a href="https://www.corporativo.msd.com.ar/acerca-de-nosotros/politica-de-privacidad.xhtml">Política de privacidad</a></li>
+  </ul>
+      AR-NON-00260<br/>
+      D.R. © 2021 Merck Sharp & Dohme Corp., una subsidiaria de Merck & Co., Inc., Kenilworth, NJ, USA.<br/>
+      Todos los derechos reservados. Prohibida su reproducción total o parcial.<br/>
+      MSD ARGENTINA S.R.L.<br/>
+      Cazadores de Coquimbo 2841/57, Piso 4 (B1605AZE) - Munro - Vicente López - Bs. As. / Tel.: 11-6090-7200 // <a href="http://www.msd.com.ar" target="_blank">www.msd.com.ar</a> // <a href="mailto: recepcion_argentina@merck.com">recepcion_argentina@merck.com</a> <br/>
+      <img src="https://image.mail.msd.com.ar/lib/fe9313737664007e7d/m/1/211013logo-blanco.png" alt="MSD"/> </footer>
+   <div data-type="slot" data-key="form"></div>
+</body>
+ <script>
+ var x, i, j, l, ll, selElmnt, a, b, c;
+/* Look for any elements with the class "custom-select": */
+x = document.getElementsByClassName("custom-select");
+l = x.length;
+for (i = 0; i < l; i++) {
+  selElmnt = x[i].getElementsByTagName("select")[0];
+  ll = selElmnt.length;
+  /* For each element, create a new DIV that will act as the selected item: */
+  a = document.createElement("DIV");
+  a.setAttribute("class", "select-selected");
+  a.innerHTML = selElmnt.options[selElmnt.selectedIndex].innerHTML;
+  x[i].appendChild(a);
+  /* For each element, create a new DIV that will contain the option list: */
+  b = document.createElement("DIV");
+  b.setAttribute("class", "select-items select-hide");
+  for (j = 1; j < ll; j++) {
+    /* For each option in the original select element,
     create a new DIV that will act as an option item: */
-        c = document.createElement("DIV");
-        c.innerHTML = selElmnt.options[j].innerHTML;
-        c.addEventListener("click", function (e) {
-          /* When an item is clicked, update the original select box,
+    c = document.createElement("DIV");
+    c.innerHTML = selElmnt.options[j].innerHTML;
+    c.addEventListener("click", function(e) {
+        /* When an item is clicked, update the original select box,
         and the selected item: */
-          var y, i, k, s, h, sl, yl;
-          s = this.parentNode.parentNode.getElementsByTagName("select")[0];
-          sl = s.length;
-          h = this.parentNode.previousSibling;
-          for (i = 0; i < sl; i++) {
-            if (s.options[i].innerHTML == this.innerHTML) {
-              s.selectedIndex = i;
-              h.innerHTML = this.innerHTML;
-              y = this.parentNode.getElementsByClassName("same-as-selected");
-              yl = y.length;
-              for (k = 0; k < yl; k++) {
-                y[k].removeAttribute("class");
-              }
-              this.setAttribute("class", "same-as-selected");
-              break;
+        var y, i, k, s, h, sl, yl;
+        s = this.parentNode.parentNode.getElementsByTagName("select")[0];
+        sl = s.length;
+        h = this.parentNode.previousSibling;
+        for (i = 0; i < sl; i++) {
+          if (s.options[i].innerHTML == this.innerHTML) {
+            s.selectedIndex = i;
+            h.innerHTML = this.innerHTML;
+            y = this.parentNode.getElementsByClassName("same-as-selected");
+            yl = y.length;
+            for (k = 0; k < yl; k++) {
+              y[k].removeAttribute("class");
             }
+            this.setAttribute("class", "same-as-selected");
+            break;
           }
-          h.click();
-        });
-        b.appendChild(c);
-      }
-      x[i].appendChild(b);
-      a.addEventListener("click", function (e) {
-        /* When the select box is clicked, close any other select boxes,
+        }
+        h.click();
+    });
+    b.appendChild(c);
+  }
+  x[i].appendChild(b);
+  a.addEventListener("click", function(e) {
+    /* When the select box is clicked, close any other select boxes,
     and open/close the current select box: */
-        e.stopPropagation();
-        closeAllSelect(this);
-        this.nextSibling.classList.toggle("select-hide");
-        this.classList.toggle("select-arrow-active");
-      });
-    }
+    e.stopPropagation();
+    closeAllSelect(this);
+    this.nextSibling.classList.toggle("select-hide");
+    this.classList.toggle("select-arrow-active");
+  });
+}
 
-    function closeAllSelect(elmnt) {
-      /* A function that will close all select boxes in the document,
+function closeAllSelect(elmnt) {
+  /* A function that will close all select boxes in the document,
   except the current select box: */
-      var x,
-        y,
-        i,
-        xl,
-        yl,
-        arrNo = [];
-      x = document.getElementsByClassName("select-items");
-      y = document.getElementsByClassName("select-selected");
-      xl = x.length;
-      yl = y.length;
-      for (i = 0; i < yl; i++) {
-        if (elmnt == y[i]) {
-          arrNo.push(i);
-        } else {
-          y[i].classList.remove("select-arrow-active");
-        }
-      }
-      for (i = 0; i < xl; i++) {
-        if (arrNo.indexOf(i)) {
-          x[i].classList.add("select-hide");
-        }
-      }
+  var x, y, i, xl, yl, arrNo = [];
+  x = document.getElementsByClassName("select-items");
+  y = document.getElementsByClassName("select-selected");
+  xl = x.length;
+  yl = y.length;
+  for (i = 0; i < yl; i++) {
+    if (elmnt == y[i]) {
+      arrNo.push(i)
+    } else {
+      y[i].classList.remove("select-arrow-active");
     }
+  }
+  for (i = 0; i < xl; i++) {
+    if (arrNo.indexOf(i)) {
+      x[i].classList.add("select-hide");
+    }
+  }
+}
 
-    /* If the user clicks anywhere outside the select box,
+/* If the user clicks anywhere outside the select box,
 then close all select boxes: */
-    document.addEventListener("click", closeAllSelect);
+document.addEventListener("click", closeAllSelect);
+  
+ // Get the modal
+var modal = document.getElementById("myModal");
+var modal = document.getElementById("myModal2");
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+var btn = document.getElementById("myBtn2");
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+// When the user clicks on the button, open the modal
+btn.onclick = function() {
+  modal.style.display = "block";
+}
 
-    // Get the modal
-    var modal = document.getElementById("myModal");
-    var modal = document.getElementById("myModal2");
-    // Get the button that opens the modal
-    var btn = document.getElementById("myBtn");
-    var btn = document.getElementById("myBtn2");
-    // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close")[0];
-    // When the user clicks on the button, open the modal
-    btn.onclick = function () {
-      modal.style.display = "block";
-    };
-
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function (event) {
-      if (event.target == modal) {
-        modal.style.display = "none";
-      }
-    };
-  </script>
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+} 
+  
+ </script>
 </html>
